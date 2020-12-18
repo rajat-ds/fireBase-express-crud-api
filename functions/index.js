@@ -25,8 +25,10 @@ app.post("/api/create", (req, res) => {
     try {
       const result = await db.collection("products").doc().create({
         name: req.body.name,
-        description: req.body.description,
-        price: req.body.price,
+        age: req.body.age,
+        gender: req.body.gender,
+        company: req.body.company,
+        email: req.body.email
       });
       return res.status(200).send({result});
     } catch (error) {
@@ -50,8 +52,10 @@ app.get("/api/read", (req, res) => {
           const selectedItem = {
             id: doc.id,
             name: doc.data().name,
-            description: doc.data().description,
-            price: doc.data.price,
+            age:doc.data().age,
+            gender:doc.data().gender,
+            company:doc.data().company,
+            email:doc.data().email,
           };
           response.push(selectedItem);
         }
